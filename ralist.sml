@@ -105,4 +105,38 @@ struct
 	  if i < size then tree_drop size t i rest
 	              else drop rest (i-size)
 
+(* PL research report functions/values *)
+    (* returns a random access list given a standard list *)
+    fun listToRal list =
+      (case list of
+         nil => empty
+       | (h::t) => cons h (listToRal t))
+
+    (* given a positive int i, generates a list of increasing numbers from 1 to i *)
+    fun generateLongList i =
+      (case i of
+         0 => nil
+       | a => generateLongList(i-1)@a::nil)
+      
+    (* prints the time required to look up some index in a long standard list *)
+    val time_lookup_list =
+      let 
+        val t = Timer.startCPUTimer()
+      in
+        List.nth (generateLongList(10000), 9999);
+        print ("Time to find index 9999 in list: " ^ 
+        Time.toString(#usr(Timer.checkCPUTimer(t))) ^ "\n")
+      end
+
+    (* prints the time required to look up some index in a long ralist *)
+    val time_lookup_ral =
+      let 
+        val raltree = listToRal (generateLongList(10000))
+        val t = Timer.startCPUTimer()
+      in
+        lookup raltree 9999;
+        print ("Time to find index 9999 in ralist: " ^ 
+        Time.toString(#usr(Timer.checkCPUTimer(t))) ^ "\n")
+      end
+
 end

@@ -1,0 +1,23 @@
+(* Chris Okasaki
+   School of Computer Science
+   Carnegie Mellon University
+   Pittsburgh, PA 15213
+   cokasaki@cs.cmu.edu *)
+
+Standard ML (version 0.93) source code accompanying
+	Chris Okasaki
+	"Purely Functional Random-Access Lists"
+	FPCA '95
+
+Random-access lists:
+	ralist.sig	-- signature for random-access lists
+	ralist.sml	-- implementation appearing in paper
+	ralist2.sml	-- slighty optimized version
+
+In addition to the operations described in the paper, we also include
+several other logarithmic-time operations, including
+	length
+	create
+	drop
+
+Benchmark code and data appears in the "benchmark" subdirectory.

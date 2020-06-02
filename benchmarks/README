@@ -1,0 +1,70 @@
+(* Chris Okasaki
+   School of Computer Science
+   Carnegie Mellon University
+   Pittsburgh, PA 15213
+   cokasaki@cs.cmu.edu *)
+
+Standard ML (version 0.93) source code accompanying
+	Chris Okasaki
+	"Purely Functional Random-Access Lists"
+	FPCA '95
+
+Random-access lists:
+	ralist.sig	-- signature for random-access lists
+	ralist.sml	-- implementation appearing in paper
+	ralist2.sml	-- slighty optimized version
+
+For comparison purposes, we provide five further implementations
+	standard.sml	-- standard lists
+			   (do not support efficient lookups/updates)
+	myers.sml	-- random-access stacks by Eugene Myers
+			   (do not support efficient updates)
+	avl.sml		-- AVL trees
+	braun.sml	-- Braun trees
+	kt.sml		-- Kaplan-Tarjan lists
+
+Benchmarking code:
+	benchmark.sig
+	benchmark1.sml
+	benchmark2.sml
+	benchmark3.sml
+	benchmark4.sml
+	benchmark5.sml
+        benchmarks.sml
+	time.sml
+
+To use any of the above, startup Standard ML and execute the command
+	use "load.sml";
+
+This will create seven benchmarking structures:
+	R -- random-access lists (untuned)
+	F -- random-access lists (somewhat tuned)
+	S -- standard lists
+	M -- Myers stacks
+	A -- AVL trees
+	B -- Braun trees
+	K -- Kaplan-Tarjan lists
+
+Each structure contains a command "run" that takes 5 lists of integers.
+It will run the first benchmark on each of the problem sizes in the
+first list, and so on.  Each benchmark will print a row of data including
+problem size, user time, system time, garbage-collection time,
+total time (user+system+gc), and wall-clock time.
+
+Example:
+-  F.run ([1000,2000],[1000],[1000],[1000],[1000]);
+quicksort
+        1000 0.232291666666667 0.00260416666666667 0.0677083333333333 0.302604166666667 0.326041666666667
+        2000 0.516666666666667 0.00885416666666666 0.149479166666667 0.675 0.696875
+sum
+        1000 0.0140625 0.000520833333333333 0.000520833333333333 0.0151041666666667 0.028125
+lookup
+        1000 0.0182291666666667 0.0 0.000520833333333333 0.01875 0.0317708333333333
+update
+        1000 0.0625 0.0015625 0.0130208333333333 0.0770833333333333 0.0802083333333333
+histogram
+        1000 0.511979166666667 0.00572916666666667 0.225 0.742708333333333 0.7765625
+
+
+The raw data used to generate the table in the paper appears in the file
+	raw.data

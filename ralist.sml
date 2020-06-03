@@ -118,11 +118,17 @@ struct
          0 => nil
        | a => generateLongList(i-1)@a::nil)
 
-    (* given a positive int i, generates a list of increasing numbers from 1 to i *)
+    (* given a positive int i, generates a list of decreasing numbers from 1 to i *)
     fun generateRaList i =
       (case i of
          0 => empty
        | a => cons a (generateRaList (a-1)))
+
+    (* given a positive int i, generates a list of decreasing real numbers from 1 to i *)
+    fun generateRealRaList i =
+      (case i of
+         0 => empty
+       | a => cons (Real.fromInt a) (generateRealRaList (a-1)))
 
     (* returns the time in nanoseconds required to look up an index n 
        in a given standard list *)

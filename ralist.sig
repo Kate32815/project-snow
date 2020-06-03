@@ -24,7 +24,8 @@ sig
     val listToRal : 'a list -> 'a ralist
     val generateLongList : int -> int list
     val generateRaList : int -> int ralist
-    
+    val generateRealRaList : int -> real ralist
+
     val lookup_time_list: int list * int -> IntInf.int
     val lookup_time_ral: 'a ralist * int -> IntInf.int
 

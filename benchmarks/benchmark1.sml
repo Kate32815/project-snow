@@ -1,4 +1,4 @@
-functor Benchmark1(structure List : RANDOM_ACCESS_LIST) : BENCHMARK =
+functor Benchmark1(structure List : RANDOM_ACCESS_LIST)=
   (* quicksort *)
 struct
   open List
@@ -14,7 +14,7 @@ struct
 	      | r n seed = cons seed (r (n-1) (nextrandom seed))
 	in r n 1.0 end
 
-  fun quicksort xs =
+  fun quicksort xs : real ralist =
     let fun partition (pivot:real,xs,smalls,bigs) =
           if isempty xs then (smalls,bigs)
           else let val x = head xs
@@ -36,9 +36,11 @@ struct
   (* for testing *)
   fun convert xs = if isempty xs then [] else head xs :: convert (tail xs)
 
+  (*
   fun run n reps =
         let val r = randlist n
 	in
 	    Time.time (fn () => quicksort r,reps)
 	end
+  *)
 end

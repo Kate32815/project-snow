@@ -117,26 +117,30 @@ struct
       (case i of
          0 => nil
        | a => generateLongList(i-1)@a::nil)
-      
-    (* prints the time required to look up some index in a long standard list *)
-    val time_lookup_list =
+
+    (* given a positive int i, generates a list of increasing numbers from 1 to i *)
+    fun generateRaList i =
+      (case i of
+         0 => empty
+       | a => cons a (generateRaList (a-1)))
+
+    (* returns the time in nanoseconds required to look up an index n 
+       in a given standard list *)
+    fun lookup_time_list (lst, n) = 
       let 
-        val t = Timer.startCPUTimer()
-      in
-        List.nth (generateLongList(10000), 9999);
-        print ("Time to find index 9999 in list: " ^ 
-        Time.toString(#usr(Timer.checkCPUTimer(t))) ^ "\n")
+        val t = Timer.startCPUTimer() 
+      in 
+        (List.nth (lst, n)); 
+        Time.toNanoseconds(#usr(Timer.checkCPUTimer(t))) 
       end
 
-    (* prints the time required to look up some index in a long ralist *)
-    val time_lookup_ral =
+    (* returns the time in nanoseconds required to look up an index n 
+       in a given random access list *)
+    fun lookup_time_ral (ralst, n) = 
       let 
-        val raltree = listToRal (generateLongList(10000))
-        val t = Timer.startCPUTimer()
-      in
-        lookup raltree 9999;
-        print ("Time to find index 9999 in ralist: " ^ 
-        Time.toString(#usr(Timer.checkCPUTimer(t))) ^ "\n")
+        val t = Timer.startCPUTimer() 
+      in 
+        lookup ralst n; 
+        Time.toNanoseconds(#usr(Timer.checkCPUTimer(t))) 
       end
-
 end

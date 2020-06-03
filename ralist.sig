@@ -23,9 +23,10 @@ sig
 (* PL research report functions/values *)
     val listToRal : 'a list -> 'a ralist
     val generateLongList : int -> int list
-
-    val time_lookup_list: unit
-    val time_lookup_ral: unit
+    val generateRaList : int -> int ralist
+    
+    val lookup_time_list: int list * int -> IntInf.int
+    val lookup_time_ral: 'a ralist * int -> IntInf.int
 
 (* ExtendedML axioms
     head empty = raise Empty
